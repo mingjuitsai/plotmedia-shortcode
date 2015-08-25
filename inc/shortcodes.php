@@ -38,7 +38,8 @@ function col_shortcode( $atts, $content = null ) {
 
 	$attribute['style'] = $attribute['style'] ? 'style="'.$attribute['style'].'"' : '';
 	$attribute['num'] = $attribute['num'] ? 'col-'.$attribute['num'] : '';
-	return '<div '.$attribute['style'].' class="col '.$attribute['num'].' '.$attribute['class'].'">' . do_shortcode($content) . '</div>';
+	$classes = $attribute['class'] ? 'col'. ' ' . $attribute['num'] . ' ' . $attribute['class'] : 'col'. ' ' . $attribute['num'];
+	return '<div '.$attribute['style'].' class="' . $classes . '">' . do_shortcode($content) . '</div>';
 }
 
 
@@ -124,7 +125,8 @@ function sh_button( $atts, $content = null ){
 			'url' => '',
 			'target' => '_self',
 		), $atts, 'button' );
-	return '<a target="'.$atts['target'].'" href="'.$atts["url"].'"" class="'.$atts["class"].' button-'.$atts["type"].'">'.$atts["text"].'</a>';
+	$classes = $atts["class"] ? $atts["class"] . ' ' . 'button-' . $atts["type"] : 'button-' . $atts["type"];
+	return '<a target="'.$atts['target'].'" href="'.$atts["url"].'"" class="' . $classes . '">'.$atts["text"].'</a>';
 }
 
 
