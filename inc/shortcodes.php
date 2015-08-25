@@ -26,23 +26,24 @@ function row_shortcode( $atts, $content = null ) {
 }
 add_shortcode( 'row', 'row_shortcode' );
 
+// Col shortcode
+add_shortcode( 'col', 'col_shortcode' );
 function col_shortcode( $atts, $content = null ) {
 
 	$attribute = shortcode_atts( array(
-		'num' => '',
+		'num' => '1',
 		'class' => '',
 		'style' => ''
 	), $atts );
 
 	$attribute['style'] = $attribute['style'] ? 'style="'.$attribute['style'].'"' : '';
 	$attribute['num'] = $attribute['num'] ? 'col-'.$attribute['num'] : '';
-
 	return '<div '.$attribute['style'].' class="col '.$attribute['num'].' '.$attribute['class'].'">' . do_shortcode($content) . '</div>';
 }
 
-add_shortcode( 'col', 'col_shortcode' );
 
-
+/* Archive short-code, pulling posts */
+add_shortcode( 'archive', 'archive_shortcode' );
 function archive_shortcode( $atts ) {
 	ob_start();
 	$attribute = shortcode_atts( array(
@@ -111,21 +112,19 @@ function archive_shortcode( $atts ) {
 	return ob_get_clean();
 }
 
-add_shortcode( 'archive', 'archive_shortcode' );
 
-
-/* Content Button */
+/* Buttons */
 add_shortcode('button', 'sh_button');
-function sh_button($attr){
-	$attr = shortcode_atts(
+function sh_button( $atts, $content = null ){
+	$atts = shortcode_atts(
 		array(
 			'type'  => 'action',
 			'text'  => '',
 			'class' => '',
 			'url' => '',
 			'target' => '_self',
-		), $attr, 'button' );
-	return '<a target="'.$attr['target'].'" href="'.$attr["url"].'"" class="'.$attr["class"].' button-'.$attr["type"].'">'.$attr["text"].'</a>';
+		), $atts, 'button' );
+	return '<a target="'.$atts['target'].'" href="'.$atts["url"].'"" class="'.$atts["class"].' button-'.$atts["type"].'">'.$atts["text"].'</a>';
 }
 
 

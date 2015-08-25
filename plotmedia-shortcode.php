@@ -10,13 +10,16 @@
  */
 
 
-add_action( 'init', 'add_plotmedia_shortcodes' );
+add_action( 'init', 'plotmedia_shortcode_init' );
 
 // Declare shortcode function if NOT exist
-if( !function_exists( 'add_plotmedia_shortcodes') ) {
+if( !function_exists( 'plotmedia_shortcode_init') ) {
 
-	function add_plotmedia_shortcodes() {
-		// add the shortcode 
+	function plotmedia_shortcode_init() {
+		// add the shortcodes
 		require 'inc/shortcodes.php';
+
+		// add the filters 
+		require 'inc/filters.php';
 	}
 }
