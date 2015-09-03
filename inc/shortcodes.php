@@ -125,7 +125,7 @@ function sh_button( $atts, $content = null ){
 			'url' => '',
 			'target' => '_self',
 		), $atts, 'button' );
-	$classes = $atts["class"] ? $atts["class"] . ' ' . 'button-' . $atts["type"] : 'button-' . $atts["type"];
+	$classes = $atts["class"] ? $atts["class"] . ' ' . 'button-' . $atts["type"] : 'button--' . $atts["type"];
 	return '<a target="'.$atts['target'].'" href="'.$atts["url"].'"" class="' . $classes . '">'.$atts["text"].'</a>';
 }
 
