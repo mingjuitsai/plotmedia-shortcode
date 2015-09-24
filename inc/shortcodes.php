@@ -65,7 +65,7 @@ function archive_shortcode( $atts ) {
 	$category_id = $category->term_id;
 	$order   = $attribute['order'];
 	$orderby = $attribute['orderby'];
-	$tax_queries = $attribute['tax_query'] ? explode(',', $attribute['tax_query'] ) : array();
+	$tax_queries = $attribute['tax_query'] ? explode('+', $attribute['tax_query'] ) : array();
 	$tax_query_data = array();
 	$relation = $attribute['relation'];
 
@@ -75,11 +75,15 @@ function archive_shortcode( $atts ) {
 			$tax_query_data[] = array(
 				'taxonomy' => trim($tax_query[0]),
 				'field'    => 'slug',
-				'terms'    => trim($tax_query[1]),
+				'terms'    => explode( ',', $tax_query[1] ),
 				'operator' => $tax_query[2] ? trim($tax_query[2]) : 'IN'
 			);
 		}
 	} 
+
+	print_r($tax_query_data);
+
+	
 	if( count($tax_queries) >= 2 ){
 		$tax_query_data['relation'] = $relation;
 	}
